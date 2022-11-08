@@ -34,7 +34,9 @@
     background: #555;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -43,12 +45,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
-* > span {
+*>span {
     font-size: inherit;
     font-weight: inherit;
 }
 
-p, div, a {
+p,
+div,
+a {
     line-height: 1.5rem;
 }
 
@@ -62,7 +66,8 @@ h1 {
     font-weight: 600;
 }
 
-h2, .heading2 > * {
+h2,
+.heading2>* {
     font-size: 1.1rem;
     font-weight: 500;
 }
@@ -71,7 +76,8 @@ section {
     margin: 1.5em 0;
 }
 
-.heading, .heading2 {
+.heading,
+.heading2 {
     position: relative;
     cursor: default;
     user-select: none;
@@ -144,6 +150,7 @@ img {
 .btn1 {
     color: white;
     background: var(--PRIMARY);
+    background-color: cadetblue;
     padding: .25em 1em;
     min-width: 8em;
     min-height: 2.25em;
@@ -210,12 +217,14 @@ img {
 .material-symbols-outlined {
     user-select: none;
     font-variation-settings: 'FILL' 0,
-    'wght' 600,
-    'GRAD' 0,
-    'opsz' 48
+        'wght' 600,
+        'GRAD' 0,
+        'opsz' 48
 }
 
-input, select, option {
+input,
+select,
+option {
     font-size: .8rem;
     padding: .5em 1em;
     border-radius: 5px;

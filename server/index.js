@@ -18,14 +18,14 @@ dotenv.config();
 sgMail.setApiKey(process.env.SENDGRID_KEY);
 export const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
 
-app.use(bodyParser.json({extended: true}));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use('/orders', orders);
 app.use('/payments', payments);
 app.use('/products', products);
-app.use('/shipping',shipping);
+app.use('/shipping', shipping);
 app.use('/notifications', notifications);
 app.use('/me', me);
 

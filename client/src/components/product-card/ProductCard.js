@@ -1,11 +1,11 @@
 import styles from './productCard.module.css';
-import {useRef, useState} from "react";
-import {motion} from 'framer-motion';
-import {useDispatch, useSelector} from "react-redux";
-import {updateWishlist} from "../../actions/auth";
-import {useNavigate} from "react-router-dom";
+import { useRef, useState } from "react";
+import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from "react-redux";
+import { updateWishlist } from "../../actions/auth";
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({product, addProductToCart, productsPage = false}) => {
+const ProductCard = ({ product, addProductToCart, productsPage = false }) => {
 
     const [addToCart, setAddToCart] = useState(false);
     const wrapperRef = useRef();
@@ -49,7 +49,7 @@ const ProductCard = ({product, addProductToCart, productsPage = false}) => {
 
     return (
         <div ref={wrapperRef}
-             className={`${styles['wrapper']} ${productsPage ? styles['products-page'] : ''} ${!product.stock && styles['out-of-stock']}`}>
+            className={`${styles['wrapper']} ${productsPage ? styles['products-page'] : ''} ${!product.stock && styles['out-of-stock']}`}>
             {addToCart &&
                 <motion.img initial={{
                     x: getXi(),
@@ -57,30 +57,30 @@ const ProductCard = ({product, addProductToCart, productsPage = false}) => {
                     padding: '1em',
                     borderRadius: '10px'
                 }}
-                            animate={{
-                                x: getXf(),
-                                y: 0,
-                                width: 24,
-                                height: 24,
-                                opacity: .8,
-                                borderRadius: '50%',
-                                padding: '.5em'
-                            }}
-                            transition={{type: "spring", stiffness: 40, bounce: 0}}
-                            className={styles['cart-img']}
-                            src={product.image}
-                            alt={product.name}/>}
+                    animate={{
+                        x: getXf(),
+                        y: 0,
+                        width: 24,
+                        height: 24,
+                        opacity: .8,
+                        borderRadius: '50%',
+                        padding: '.5em'
+                    }}
+                    transition={{ type: "spring", stiffness: 40, bounce: 0 }}
+                    className={styles['cart-img']}
+                    src={product.image}
+                    alt={product.name} />}
             <div className={styles['image-wrapper']}>
-                <img src={product.image} alt={product.name}/>
+                <img src={product.image} alt={product.name} />
                 <span onClick={handleWishlist}
-                      className={`material-symbols-outlined ${styles['wishlist']} ${wishlist.includes(product.product_id) && styles['wishlisted']}`}>favorite</span>
+                    className={`material-symbols-outlined ${styles['wishlist']} ${wishlist.includes(product.product_id) && styles['wishlisted']}`}>favorite</span>
             </div>
             <div className={styles['content']}>
                 <p className={styles['name']}>{product.name}</p>
                 <div className={styles['footer']}>
                     <div className={styles['details']}>
                         <p className={styles['weight']}>{product.weight}{product.measurement}</p>
-                        <p className={styles['price']}>{Number(product.price).toFixed(2)} EGP</p>
+                        <p className={styles['price']}>Rs. {Number(product.price).toFixed(2)}</p>
                     </div>
                     {product.stock ?
                         <div onClick={handleAddToCart} className={styles['add-to-cart']}>Add to Cart</div> :

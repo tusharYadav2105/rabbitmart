@@ -1,4 +1,4 @@
-import {WEBSITE_BASE_URL} from "../../../services/BaseURLs.js";
+import { WEBSITE_BASE_URL } from "../../../services/BaseURLs.js";
 
 const calculateTotalItems = (products) => {
     let total = 0;
@@ -138,7 +138,7 @@ const create = (order) => `
         <div class="sum">
             <p>Order Tracking Id: <span class="val">#${order.order_id}</span></p>
             <p>Items Purchased: <span class="val">${calculateTotalItems(order.products)} Items</span></p>
-            <p>Grand Total: <span class="val">${order.total} EGP</span></p>
+            <p>Grand Total: <span class="val">${order.total} Rs.</span></p>
         </div>
         <div class="buttons">
             <a class="order" href="${WEBSITE_BASE_URL}/orders/${order.order_id}">View Order</a>

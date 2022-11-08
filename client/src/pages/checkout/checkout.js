@@ -1,9 +1,9 @@
 import styles from './checkout.module.css';
 import '../.././shared/css/master.css';
-import {useState, useRef} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Error from "../../components/feedback/error/Error";
-import {postOrder} from "../../actions/orders";
+import { postOrder } from "../../actions/orders";
 
 const Checkout = () => {
     const [error, setError] = useState('');
@@ -17,7 +17,7 @@ const Checkout = () => {
     const building_number = useRef();
     const floor = useRef();
     const apartment_number = useRef();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const cart = useSelector(state => state.products.cart_validation);
 
@@ -73,7 +73,7 @@ const Checkout = () => {
             email: email.current.value,
             phone_number: phone.current.value,
             address: {
-                country: 'Egypt',
+                country: 'India',
                 city: city.current.value,
                 area: area.current.value,
                 street: street.current.value,
@@ -83,14 +83,14 @@ const Checkout = () => {
             }
         };
 
-        dispatch(postOrder(cart.token, data, onSuccess, onError));
+        // dispatch(postOrder(cart.token, data, onSuccess, onError));
 
     }
     const validatePhone = (phone) => {
         return String(phone)
             .toLowerCase()
             .match(
-                /^01[0-2,5]{1}[0-9]{8}$/
+                /^[6-9]\d{9}$/
             );
     };
 
@@ -104,30 +104,30 @@ const Checkout = () => {
 
     return (
         <div className={styles['wrapper']}>
-            {error && <Error error={error} setError={setError}/>}
+            {error && <Error error={error} setError={setError} />}
             <div className={'heading-wrapper'}>
                 <h1 className={'heading'}>Checkout</h1>
             </div>
 
             <div className={styles['form']}>
-                <input ref={fname} type="text" placeholder="First Name"/>
-                <input ref={lname} type="text" placeholder="Last Name"/>
+                <input ref={fname} type="text" placeholder="First Name" />
+                <input ref={lname} type="text" placeholder="Last Name" />
 
-                <input ref={email} type="text" placeholder="Email"/>
-                <input ref={phone} type="text" placeholder="Phone"/>
-                <input ref={city} type="text" placeholder="City"/>
+                <input ref={email} type="text" placeholder="Email" />
+                <input ref={phone} type="text" placeholder="Phone" />
+                <input ref={city} type="text" placeholder="City" />
 
-                <input ref={area} type="text" placeholder="Area"/>
-                <input ref={street} type="text" placeholder="Street"/>
-                <input ref={building_number} type="text" placeholder="Building Number"/>
+                <input ref={area} type="text" placeholder="Area" />
+                <input ref={street} type="text" placeholder="Street" />
+                <input ref={building_number} type="text" placeholder="Building Number" />
 
-                <input ref={floor} type="text" placeholder="Floor"/>
-                <input ref={apartment_number} type="text" placeholder="Apartment Number"/>
+                <input ref={floor} type="text" placeholder="Floor" />
+                <input ref={apartment_number} type="text" placeholder="Apartment Number" />
             </div>
 
             <div className={styles['total']}>
                 <div className={styles["total-text"]}>Total Price:</div>
-                <div className={styles['total-amount']}>{cart.total} EGP</div>
+                <div className={styles['total-amount']}>{cart.total} Rs.</div>
             </div>
 
             <div className={styles['total-wrapper']}>

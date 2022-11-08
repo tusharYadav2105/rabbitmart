@@ -1,16 +1,16 @@
-import {stripe} from "../../index.js";
+import { stripe } from "../../index.js";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import generateId from "../../utils/generateId.js";
-import {ORDERS_BASEURL, WEBSITE_BASE_URL} from "../../services/BaseURLs.js";
+import { ORDERS_BASEURL, WEBSITE_BASE_URL } from "../../services/BaseURLs.js";
 
 export const createCheckoutSession = async (req, res) => {
     try {
-        const {products, total} = jwt.verify(
+        const { products, total } = jwt.verify(
             req.body.token,
             process.env.JWT_SECRET_KEY
         );
-        const {data} = req.body;
+        const { data } = req.body;
         const order_id = generateId();
 
         const session = await stripe.checkout.sessions.create({
@@ -60,21 +60,21 @@ export const createCheckoutSession = async (req, res) => {
             cancel_url: `${WEBSITE_BASE_URL}/cart`,
         });
 
-        res.status(201).json({url: session.url});
+        res.status(201).json({ url: session.url });
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 };
 
 export const webhook = async (req, res) => {
     const eventType = req.body.type;
-    const {metadata} = req.body.data.object;
+    const { metadata } = req.body.data.object;
     try {
         if (eventType === "charge.succeeded") {
-            await axios.post(ORDERS_BASEURL, {data: metadata});
+            await axios.post(ORDERS_BASEURL, { data: metadata });
         }
         res.status(200).json(metadata);
     } catch (error) {
-        res.status(404).json({message: error.message});
+        res.status(404).json({ message: error.message });
     }
 };
